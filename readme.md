@@ -3,7 +3,7 @@
 # CryptoNote Switching Relay Proxy v4.3.2
 ***
 Forked from repository: https://github.com/sebseb7/cryptonote-proxy
-![CryoptonoteUI](https://codpool.com/images/proxyimage.jpg)
+![CryoptonoteUI](https://codpool.com/images/codproxy.png)
 
 ## Basic Instructions
 https://nodejs.org/
