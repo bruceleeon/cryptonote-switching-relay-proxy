@@ -1,12 +1,14 @@
 <!doctype html>
 <html>
 	<head>
-		<title>CryptoKnight Proxy Mining Switch</title>
+		<title>COD Proxy Mining Switch</title>
 		<meta name="viewport" content="initial-scale=1, maximum-scale=1">
 		<script src="/socket.io/socket.io.js"></script>
 		<script src="//code.jquery.com/jquery-1.11.1.js"></script>
 		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-timeago/1.4.0/jquery.timeago.min.js"></script>
-		
+		<link href="themes/default.css" rel="stylesheet">
+		<link href="themes/custom.css" rel="stylesheet">
+		<link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 		<script>"use strict";
 			(function() {
 				function getReadableHashRateString(hashrate){
@@ -129,7 +131,7 @@
 								'<td class="marketvalue"></td>' +
 								'<td class="dailyearning"></td>' +
 								'<td class="dailybtcearning"></td>' +
-								'<td class="moreinfo"><div class="dropdown"><i></i><div class="dropdown-content"><dl>' +
+								'<td class="moreinfo"><div class="dropdown"><i class="fa fa-question-circle"></i><div class="dropdown-content"><dl>' +
 									'<dt>Pool</dt><dd>' + (coin.url ? ('<a target="_blank" class="pool" href="' + coin.url.replace(/\/$/, "") + '/?wallet=' + coin.login + '">Stats</a>') : coin.login) + '</dd>' +
 									'<dt>Difficulty</dt><dd class="difficulty"></dd>' +
 									'<dt>Algo</dt><dd class="algoname"></dd>' +
@@ -210,14 +212,16 @@
 						var keys = Object.keys(workerList);
 						for(var worker of keys){
 							var date = (referencetime - workerList[worker].time).toFixed(0) + " seconds ago";
-							$('#workers').append($('<span>'+worker+' : '+date+' : '+workerList[worker].hashrate.toFixed(2)+' kH/s<br/></span>'));
+							//$('#workers').append($('<span>'+worker+' : '+date+' : '+workerList[worker].hashrate.toFixed(2)+' kH/s<br/></span>'));
+							$('#workers').append($('<strong><span>'+worker+' :</strong> '+date+' : '+workerList[worker].hashrate.toFixed(2)+' kH/s<br/></span>'));
 							if (workerList[worker].time > (servertime-(60*5))) combined+=workerList[worker].hashrate;
 						}
 					}
 						
 						$('span.workerhashrate').text((workerhashrate || 1).toFixed(1));
 					
-						$('#workers').append($('<span>combined : '+combined.toFixed(2)+' kH/s<br/></span>'));
+						//$('#workers').append($('<span>combined : '+combined.toFixed(2)+' kH/s<br/></span>'));
+						$('#workers').append($('<br><strong><span>Total Hash : '+combined.toFixed(2)+' kH/s<br/></span></strong>'));
 
 					if (coinList) {
 						for (var coin of coinList) {
@@ -302,6 +306,14 @@
 				cursor:pointer;
 				background-color:blue;
 				color:white;
+				/* background-color: #630100; */
+				background-color: #262626;
+				box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
+				cursor: default;
+				position: relative;
+				overflow: hidden;
+				margin-bottom: 30px;
+				border-radius: 3px;
 			}
 
 			.coin > .activating {
@@ -319,7 +331,7 @@
 				margin:0.5em 0.25em;
 				padding:0;
 				}
-			.menu > a{
+			/*.menu > a{
 				font-size:12px;
 				font-weight:normal;
 				text-align:center;
@@ -335,6 +347,41 @@
 				-moz-box-shadow:0 2px 4px #aaaaaa;
 				-webkit-box-shadow:0 2px 4px #aaaaaa;
 				box-shadow:0 2px 4px #aaaaaa;
+				}*/
+				.menu > a{
+				font-size:12px;
+				font-weight:normal;
+				text-align:center;
+				display:block;
+				background:#eeeeee;
+				border:1px solid #dddddd;
+				color:#000000;
+				padding:0.2em;
+				margin:0;
+				-moz-border-radius:2px;
+				-webkit-border-radius:2px;
+				border-radius:2px;
+				-moz-box-shadow:0 2px 4px #aaaaaa;
+				-webkit-box-shadow:0 2px 4px #aaaaaa;
+				box-shadow:0 2px 4px #aaaaaa;
+				color: #fff;background-color: 
+				#5cb85c;border-color: #4cae4c;
+				display: inline-block;
+				font-weight: 400;
+				text-align: center;
+				vertical-align: middle;
+				cursor: pointer;
+				background-image: none;
+				border: 1px solid transparent;
+				white-space: nowrap;
+				padding: 6px 12px;
+				font-size: 14px;
+				line-height: 1.42857143;
+				border-radius: 4px;
+				-webkit-user-select: none;
+				-moz-user-select: none;
+				-ms-user-select: none;
+				user-select: none;"
 				}
 			.menu > a:hover{
 				color:#bbbbbb;
@@ -347,7 +394,7 @@
 				position: relative;
 				display: inline-block;
 				padding: 0 1.6em;
-				background-color: aliceblue;
+				/*background-color: aliceblue;*/
 			}
 
 			.dropdown-content {
@@ -371,18 +418,18 @@
 			}
 
 			i {
-				border: solid black;
-				border-width: 0 3px 3px 0;
+				/*border: solid black;
+				border-width: 0 3px 3px 0;*/
 				display: inline-block;
 				padding: 3px;
-				transform: rotate(45deg);
-				-webkit-transform: rotate(45deg);
+				/*transform: rotate(45deg);
+				-webkit-transform: rotate(45deg);*/
 			}
 
 			input#user {
 				width: 95%;
 				height: 100%;
-				border-color: #ff0000 #0000ff;
+				/*border-color: #ff0000 #0000ff;*/
 				text-align: center;
 				font-size:1em;
 				font-family:Consolas, Andale Mono, Lucida Console, Lucida Sans Typewriter, Monaco, Courier New, monospace;
@@ -396,15 +443,291 @@
 			div.minerstatus {
 				font-size: 50%;
 			}
+			#coins {
+				table-layout: auto;
+				width:100%;
+			}
+			
+			body {  
+			  background-color: #f5f5f5;
+			  font-family: 'Roboto', Helvetica, Arial, sans-serif;
+			  line-height: 1.428571429;
+			  color: #262626;
+			  margin: 0;
+			  padding: 0;
+			  margin-bottom: 85px;
+			  font-size: 16px;
+			  overflow-y: scroll;
+			}
+
+			/* Wrappers */
+			#wrapper {
+			  width: 100%;
+			}
+			#page-wrapper {
+			  padding: 0 15px;
+			  min-height: 568px;
+			}
+			@media (min-width: 992px) {
+			  #page-wrapper {
+				position: inherit;
+				margin: 0 0 0 225px;
+				padding: 60px 30px 0 30px;
+			  }
+			}
+			#loading{
+			  font-size: 2em;
+			}
+
+			/* Sidebar */
+			.nav-side-menu {
+			  overflow: auto;
+			  font-size: 16px;
+			  font-weight: 200;
+			  background-color: rgba(0, 0, 0, .8);
+			  position: fixed;
+			  top: 0;
+			  width: 225px;
+			  height: 100%;
+			  color: #fff;
+			  z-index: 1000;
+			}
+			.nav-side-menu .brand {
+			  background-color: #014e71;
+			  line-height: 50px;
+			  display: block;
+			  text-align: center;
+			  font-size: 20px;
+			  color: #fff;
+			  font-weight: 400;
+			}
+			.nav-side-menu .brand a {
+			  color: #fff;
+			  text-decoration: none;
+			}
+
+			.nav-side-menu .toggle-btn {
+			  display: none;
+			}
+			.nav-side-menu ul,
+			.nav-side-menu li {
+			  list-style: none;
+			  padding: 0;
+			  margin: 0;
+			  line-height: 35px;
+			  cursor: pointer;
+			}
+			.nav-side-menu ul :not(collapsed) .arrow:before,
+			.nav-side-menu li :not(collapsed) .arrow:before {
+			  font-family: FontAwesome;
+			  content: "\f078";
+			  display: inline-block;
+			  padding-left: 10px;
+			  padding-right: 10px;
+			  vertical-align: middle;
+			  float: right;
+			}
+			.nav-side-menu ul .active,
+			.nav-side-menu li .active {
+			  border-left: 3px solid #03a9f4;
+			  background-color: #0274a8;
+			}
+			.nav-side-menu ul .active a,
+			.nav-side-menu li .active a {
+			  color: #fff;
+			}
+			.nav-side-menu ul .sub-menu li.active,
+			.nav-side-menu li .sub-menu li.active {
+			  color: #03a9f4;
+			}
+			.nav-side-menu ul .sub-menu li a,
+			.nav-side-menu li .sub-menu li a {
+			  display: inline-block;
+			  width: 85%;
+			}
+			.nav-side-menu ul .sub-menu li.active a,
+			.nav-side-menu li .sub-menu li.active a {
+			  color: #03a9f4;
+			}
+			.nav-side-menu ul .sub-menu li,
+			.nav-side-menu li .sub-menu li {
+			  background-color: #181c20;
+			  border: none;
+			  line-height: 28px;
+			  border-bottom: 1px solid #23282e;
+			  margin-left: 0;
+			}
+			.nav-side-menu ul .sub-menu li:hover,
+			.nav-side-menu li .sub-menu li:hover {
+			  background-color: #020203;
+			}
+			.nav-side-menu ul .sub-menu li:before,
+			.nav-side-menu li .sub-menu li:before {
+			  font-family: FontAwesome;
+			  content: "\f105";
+			  display: inline-block;
+			  padding-left: 10px;
+			  padding-right: 10px;
+			  vertical-align: middle;
+			}
+			.nav-side-menu li {
+			  padding-left: 0;
+			  border-left: 3px solid #2e353d;
+			  border-bottom: 1px solid #23282e;
+			}
+			.nav-side-menu li a {
+			  text-decoration: none;
+			  color: #fff;
+			  display: block;
+			  width: 100%;
+			  padding: 2px 0;
+			}
+			.nav-side-menu li a i {
+			  padding-left: 10px;
+			  width: 20px;
+			  padding-right: 20px;
+			}
+			.nav-side-menu li:hover {
+			  border-left: 3px solid #03a9f4;
+			  background-color: #0274a8;
+			  -webkit-transition: all 1s ease;
+			  -moz-transition: all 1s ease;
+			  -o-transition: all 1s ease;
+			  -ms-transition: all 1s ease;
+			  transition: all 1s ease;
+			}
+			.nav-side-menu li:hover a {
+			  color: #fff;
+			}
+			@media (max-width: 991px) {
+			  .nav-side-menu {
+				position: relative;
+				width: 100%;
+			  }
+			  .nav-side-menu .toggle-btn {
+				display: block;
+				cursor: pointer;
+				position: absolute;
+				right: 10px;
+				top: 10px;
+				z-index: 10 !important;
+				padding: 3px;
+				background-color: #ffffff;
+				color: #000;
+				width: 40px;
+				text-align: center;
+				border-radius: 3px;
+			  }
+			  .brand {
+				text-align: left !important;
+				font-size: 22px;
+				padding-left: 20px;
+				line-height: 58px !important;
+			  }
+			}
+			@media (min-width: 992px) {
+			  .nav-side-menu .menu-list .menu-content {
+				display: block;
+			  }
+			}
+
+			.infoBox {
+			  /*background-color: #630100;*/
+			  background-color: #262626;
+			  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
+			  height: 80px;  
+			  cursor: default;
+			  position: relative;
+			  overflow: hidden;
+			  margin-bottom: 30px;
+			  border-radius: 3px;
+			}
+
+			.nav-side-menu .brand {
+			  background-color: #262626;
+			  line-height: 50px;
+			  display: block;
+			  text-align: center;
+			  font-size: 20px;
+			  color: #fff;
+			  font-weight: 400;
+			  padding-top: 10px;
+			  padding-bottom: 10px;
+			}
+
+			.nav-side-menu ul .active,
+			.nav-side-menu li .active {
+			  border-left: 3px solid #d00100;
+			  /*background-color: #630100;*/
+			  background-color: #12b0e4;
+			}
+
+			.nav-side-menu li:hover {
+			  border-left: 3px solid #d00100;
+			  /*background-color: #630100;*/
+			  background-color: #12b0e4;
+			  -webkit-transition: all 1s ease;
+			  -moz-transition: all 1s ease;
+			  -o-transition: all 1s ease;
+			  -ms-transition: all 1s ease;
+			  transition: all 1s ease;
+			}
+
+			.nav-side-menu ul :not(collapsed) .arrow:before,
+			.nav-side-menu li :not(collapsed) .arrow:before {
+			  font-family: FontAwesome;
+			  content: "\f078";
+			  display: inline-block;
+			  padding-left: 10px;
+			  padding-right: 10px;
+			  vertical-align: middle;
+			  float: right;
+			}
+
+			.nav-side-menu ul, .nav-side-menu li {
+				list-style: none;
+				padding: 0;
+				margin: 0;
+				line-height: 30px;
+				cursor: pointer;
+			}
+			
 		</style>
 	</head>
 	<body>
 
-		<div style="text-align: center;font-size:2em;font-family:Consolas, Andale Mono, Lucida Console, Lucida Sans Typewriter, Monaco, Courier New, monospace">
+	    <!-- Navigation -->
+    <div class="nav-side-menu">
+        <div class="brand"><a href="https://codpool.com"><img src="https://codpool.com/images/CODLogo.png"></a><br></div>
+        <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>  
+        <div class="menu-list">
+            <ul id="menu-content" class="menu-content collapsed out">
+				<li>
+					<a href="http://forums.computingondemand.com/forum/155-crypto/" target="_blank">
+					<i class="fa fa-question-circle"></i> <span tkey="support">Forums</span></a>
+				</li>
+				<li>
+					<a href="https://status.codpool.com/" target="_blank">
+					<i class="fa fa-server"></i> <span tkey="support">Pool Status</span></a>
+				</li>
+                <li><a href="https://codpool.com">
+                    <i class="fa fa-random"></i> Visit Pool Home
+                </a></li>
+				<li><a target="_new" href="https://discord.gg/TPWVQPp"><i class="fa fa-ticket"></i> <span tkey="discord">Discord</span></a></li>
+				<li><a target="_new" href="https://t.me/joinchat/IajUDxBDa0OMScXkl7poiA"><i class="fa fa-telegram"></i> <span tkey="telegram">Telegram group</span></a></li>
+            </ul>
+        </div>
+	
+    </div>
+	<div id="page-wrapper">
+	
+		<!--<div style="text-align: center;font-size:2em;font-family:Consolas, Andale Mono, Lucida Console, Lucida Sans Typewriter, Monaco, Courier New, monospace">-->
+		<div style="text-align: center;font-size:2em;font-family: 'Roboto', Helvetica, Arial, sans-serif;">
+		<!--<div style="background-color: #262626; padding:0px; margin:15px; color:#FFFFFF;">test</div>-->
 			<div style='width: 25%; float:left;'>
 				<select id='userselector'></select>
 				<div class='minerstatus'>
-					Status: <span id='minerconnection'>Detecting</span>
+					<strong>Status: </strong><span id='minerconnection'>Detecting</span>
 				</div>
 			</div>
 			<div style='width: 60%; float:right;'>			
@@ -433,7 +756,6 @@
 			
 			<div class="workers" id="workers"></div>
 		</div>
-
+	</div>
 	</body>
 </html>
-
