@@ -1,3 +1,5 @@
+## All credit to the original Devs, I only themed this to match our pool
+
 # CryptoNote Switching Relay Proxy v4.3.2
 ***
 Forked from repository: https://github.com/sebseb7/cryptonote-proxy
